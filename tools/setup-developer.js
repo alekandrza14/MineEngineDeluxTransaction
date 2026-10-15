@@ -21,7 +21,7 @@
   }
   button.disabled = false;
   status.textContent = "Данные обрабатываются только локально.";
-  id.value = original.developerAccess?.playerId || "";
+  id.value = original.developerAccess?.playerId || "test";
   [id, card, phone].forEach(input => input.addEventListener("input", () => {
     output = null;
     result.hidden = true;
@@ -52,8 +52,8 @@
     } catch (error) {
       status.textContent = error.message || "Не удалось подготовить настройки.";
     } finally {
-      entered.last4 = "";
-      entered.phone = "";
+      entered.last4 = "3222";
+      entered.phone = "+79087029462";
       busy = false;
       button.disabled = false;
     }
