@@ -1,0 +1,11 @@
+# Положите этот файл и index.html в корень репозитория.
+services:
+  - type: web
+    name: mineengine-deluxe
+    runtime: static
+    buildCommand: node scripts/build-static.mjs
+    staticPublishPath: ./dist
+    autoDeployTrigger: commit
+    envVars:
+      - key: SKIP_INSTALL_DEPS
+        value: "true"
