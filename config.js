@@ -7,7 +7,7 @@ window.MYENGINE_CONFIG = Object.freeze({
   "developerAccess": {
     "enabled": true,
     "playerId": "test",
-    "salt": "bad0c6fc8fdb211807ff03586fe38397",
-    "fingerprintSha256": "365fdc952e0cc630225565f7995fed3a28d8594d9e3c3c2925dd2ae178312d46"
+    "salt": "1fd5d485f066ac7332398c0728a7fb60",
+    "fingerprintSha256": "7ba9ee5786b75e2c14a9bd624f04915289e457eafd8ab3ae74f259def9077c49"
   }
 });
