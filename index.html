@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="./styles.css">
   <script src="./config.js" defer></script>
   <script src="./app.js" defer></script>
+  <script src="./developer-core.js" defer></script>
+  <script src="./developer.js" defer></script>
 </head>
 <body>
   <div class="preview-banner" id="preview-banner">Предпросмотр · Приём платежей пока не подключён</div>
@@ -54,6 +56,29 @@
           <p class="form-message" id="form-message" role="status" aria-live="polite">Приём платежей пока не подключён.</p>
           <p class="secure-note"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Платёжные данные вводятся на сайте ЮMoney</p>
         </form>
+        <details class="developer-block" id="developer-access" hidden>
+          <summary>Я разработчик <span aria-hidden="true">+</span></summary>
+          <p class="developer-intro">Получить сертификат Deluxe без списания. Введи данные, заданные при настройке режима разработчика.</p>
+          <form id="developer-form" autocomplete="off">
+            <label class="field-label" for="developer-player">ID разработчика</label>
+            <input class="player-input" id="developer-player" type="text" required maxlength="32" pattern="[A-Za-z0-9_.\-]{1,32}" autocomplete="off" spellcheck="false" autocapitalize="none">
+            <label class="field-label" for="developer-last4">Последние 4 цифры карты</label>
+            <input class="player-input" id="developer-last4" type="password" required minlength="4" maxlength="4" pattern="[0-9]{4}" inputmode="numeric" autocomplete="off" aria-describedby="developer-hint">
+            <label class="field-label" for="developer-phone">Телефон с кодом страны</label>
+            <input class="player-input" id="developer-phone" type="tel" required maxlength="25" autocomplete="off" placeholder="+7… или +371…" aria-describedby="developer-hint">
+            <p class="input-hint" id="developer-hint">Данные сверяются только в браузере. Полный номер карты, срок действия и CVC не нужны. Подтверждение через банк или SMS не выполняется.</p>
+            <button class="pay-button" id="developer-issue" type="submit">Получить сертификат <span aria-hidden="true">↓</span></button>
+            <p class="form-message" id="developer-message" role="status" aria-live="polite"></p>
+          </form>
+          <section class="developer-certificate" id="developer-result" hidden tabindex="-1" aria-labelledby="certificate-title">
+            <p class="eyebrow dark">СЕРТИФИКАТ РАЗРАБОТЧИКА</p>
+            <h3 id="certificate-title">MyEngine Deluxe</h3>
+            <p class="certificate-status">Оплата не требуется · 0 ₽</p>
+            <dl><dt>ID игрока</dt><dd id="certificate-player"></dd><dt>Номер сертификата</dt><dd id="certificate-id"></dd><dt>Создан</dt><dd id="certificate-date"></dd></dl>
+            <p class="input-hint">Бесплатная выдача разработчику. Банковская операция не выполнялась.</p>
+            <button type="button" class="pay-button" id="developer-download">Скачать сертификат JSON <span aria-hidden="true">↓</span></button>
+          </section>
+        </details>
         <noscript><p class="noscript">Для оплаты включите JavaScript. Пока он отключён, платёж недоступен.</p></noscript>
       </aside>
     </section>
@@ -73,7 +98,7 @@
       <div class="faq-items">
         <details><summary>Это подписка?<span aria-hidden="true">+</span></summary><p>Нет. Эта форма предназначена для одного перевода на 10 ₽. Автоматическое повторное списание не подключается.</p></details>
         <details><summary>Когда появится Deluxe?<span aria-hidden="true">+</span></summary><p>После проверки поступления перевода и ручной активации разработчиком. Срок и условия уточни у поддержки перед оплатой. Возврат со страницы ЮMoney сам по себе не активирует Deluxe.</p></details>
-        <details><summary>Где вводить данные карты?<span aria-hidden="true">+</span></summary><p>Только на странице ЮMoney, которая откроется после нажатия кнопки оплаты. Этот сайт не запрашивает номер карты, CVC или пароль от кошелька.</p></details>
+        <details><summary>Где вводить данные карты?<span aria-hidden="true">+</span></summary><p>Для оплаты — только на странице ЮMoney. Отдельный режим разработчика сверяет последние 4 цифры и телефон локально. Полный номер карты, CVC и пароль от кошелька этот сайт не запрашивает.</p></details>
         <details><summary>Что делать, если ошибся в ID?<span aria-hidden="true">+</span></summary><p>Если ещё не оплатил — исправь ID в форме. Если перевод уже завершён — отправь поддержке верный ID и номер операции из истории ЮMoney. Не оплачивай повторно до выяснения статуса.</p></details>
       </div>
     </section>

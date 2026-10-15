@@ -6,5 +6,13 @@ window.MYENGINE_CONFIG = Object.freeze({
   supportUrl: "mailto:alekandrza14@gmail.com",
   activationText: "Deluxe активируется вручную после проверки перевода. Отправьте ID игрока и номер операции из ЮMoney на alekandrza14@gmail.com.",
   // Форма оплаты на 10 ₽ включена при размещении сайта по HTTPS.
-  paymentsEnabled: true
+  paymentsEnabled: true,
+  // Заполняется локальным мастером tools/setup-developer.html.
+  // Хеш скрывает исходные цифры из файла, но не защищает от обхода JS-проверки.
+  developerAccess: {
+    enabled: false,
+    playerId: "",
+    salt: "",
+    fingerprintSha256: ""
+  }
 });
